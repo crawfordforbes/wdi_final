@@ -26,8 +26,10 @@ class SessionController < ApplicationController
 	end
 
 	def destroy
+		puts "DESTROY"
 		reset_session
 		redirect_to '/'
+
 	end
 
 end

@@ -178,13 +178,30 @@ function scoreboard() {
 		url: groupUrl,
 		success: function(data) {
 			for(i=0; i<data.length; i++){
+				var max = $("#session")[0].innerText.split('/')[2]
+				if (data[i].score >= max) {
+					
+					$("#game")[0].innerHTML = "<h1>" + data[i].name + " wins!</h1>"
+					var div = $( "#endgame")
+					var form = div.children()[0]
+					var button = document.createElement("button")
+					$(button).attr({"type": "submit", "class": "endGame"})
+					button.innerText = "Let's go to the bar!"
+					form.appendChild(button)
+				}
+			}
+			for(i=0; i<data.length; i++){
 				var li = document.createElement("li")
 
 				var name = data[i].name
 				var score = data[i].score
 				var user = data[i].id
+				var par = document.createElement("p")
+				par.innerText = score
+				$(par).attr("style", "display: inline-block")
 				$(li).attr("id", user)
-				li.innerText = name + " has a score of " + score
+				li.innerText = name + " has a score of "
+				$(li).append(par)
 				var up = document.createElement("span")
 				$(up).attr({"class": "glyphicon glyphicon-arrow-up"})
 				var down = document.createElement("span")
@@ -194,7 +211,7 @@ function scoreboard() {
 					var userUrl = "./user/" + data.currentTarget.parentElement.id
 					$.ajax({
 						type: "PUT",
-						data: {score: parseInt(data.currentTarget.parentElement.innerText.slice(-1)) + 1},
+						data: {score: parseInt(data.currentTarget.parentElement.firstElementChild.innerText) + 1},
 						url: userUrl,
 						success: function(newdata){
 							$("#scores")[0].innerHTML = ""
@@ -206,7 +223,7 @@ function scoreboard() {
 					var userUrl = "./user/" + data.currentTarget.parentElement.id
 					$.ajax({
 						type: "PUT",
-						data: {score: parseInt(data.currentTarget.parentElement.innerText.slice(-1)) - 1},
+						data: {score: parseInt(data.currentTarget.parentElement.firstElementChild.innerText) - 1},
 						url: userUrl,
 						success: function(newdata){
 							$("#scores")[0].innerHTML = ""
