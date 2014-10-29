@@ -26,3 +26,7 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+Spotify Client ID 1d2b9d8c939c482a812e97fae8cca573
+
+Spotify Client Secret dba4a4653c94461e871bf441c60a87fd

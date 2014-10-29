@@ -1,6 +1,7 @@
 class CreateGame < ActiveRecord::Migration
   def change
     create_table :games do |t|
+        t.boolean :in_progress
     	t.integer :name
     	t.integer :max_score
     	t.text :rolls

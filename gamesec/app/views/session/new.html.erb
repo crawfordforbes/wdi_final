@@ -1,28 +1,93 @@
+<% if @user == nil %>
+
 <h1>Welcome to Game Secretary</h2>
+  <h3>Log in here:</h3>
+  <% if @error %>
+  <p style='color: red;'>Incorrect email/password</p>
+  <% end %>
 
-<h3>Log in here:</h3>
-<% if @error %>
-	<p style='color: red;'>Incorrect email/password</p>
-<% end %>
-
-<%= form_tag("/session", method: "POST") do %>
-  <%= label_tag(:name, "Name:") %>
-  <%= text_field_tag(:name) %>
+  <%= form_tag("/session", method: "POST") do %>
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag(:email) %>
   <%= label_tag(:password, "Password:") %>
   <%= text_field_tag(:password) %>
   <%= submit_tag("Log in") %>
-<% end %>
+  <% end %>
 
-</br>
-<h3>Or create an account:</h3>
 
-<%= form_tag("/user", method: "POST") do %>
+  <h3>Or create an account:</h3>
+
+  <%= form_tag("/user", method: "POST") do %>
   <%= label_tag(:name, "Name:") %>
   <%= text_field_tag(:name) %>
-    <%= label_tag(:email, "Email:") %>
+  <%= label_tag(:email, "Email:") %>
   <%= text_field_tag(:email) %>
   <%= label_tag(:password, "Password:") %>
   <%= text_field_tag(:password) %>
   <%= submit_tag("Sign up") %>
-<% end %>
+  <% end %>
 
+  <% else %>
+
+  <!-- IF USER == NIL OVER -->
+
+  <div class="dashboard">
+    <p>welcome <%= @user.name %>. please select a group or start a game! </p>
+    <div id="GroupDropDown">
+      <%= form_tag("/game", method: "POST") do %>
+      <% end %>
+    </div>
+    <div id="newGroup">
+      <%= form_tag("/group", method: "POST") do %>
+      <% end %>
+    </div>
+    <div id="newMemberList">
+     <%= form_tag("/group", method: "POST") do %>
+
+    <% end %>
+  </div>
+  <div id="newGame" class="hide">
+    <%= form_tag("/game" + session[:game_id].to_s, method: "POST") do %>
+    <% end %>
+  </div>
+    <h3 id="showEditUser">Click here to make changes to your account</h3>
+    <div id="editUser" class="hide">
+      <%= form_tag("/user", method: "PUT") do %>
+      <%= hidden_field(:user_id, @user.id) %>
+      <%= label_tag(:name, "Name:") %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:email, "Email:") %>
+      <%= text_field_tag(:email) %>
+      <%= label_tag(:password, "Password:") %>
+      <%= text_field_tag(:password) %>
+      <%= label_tag(:url, "Youtube video to play on victory:") %>
+      <%= text_field_tag(:url) %>
+      <%= submit_tag("Edit me!") %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <!-- if session[:group_id] == nil OVER -->
+
+  <div class="groupEdit hide">
+    <h2>Please confirm players</h2>
+    <ul id="members">
+
+    </ul>
+    <h3>Don't have an account?  Sign up here:</h3>
+    XXX USE AJAX FOR POST HERE XXX
+    <%= form_tag("/user", method: "POST") do %>
+    <%= label_tag(:name, "Name:") %>
+    <%= text_field_tag(:name) %>
+    <%= label_tag(:email, "Email:") %>
+    <%= text_field_tag(:email) %>
+    <%= label_tag(:password, "Password:") %>
+    <%= text_field_tag(:password) %>
+    <%= submit_tag("Sign up") %>
+    <% end %>
+  </div>
+
+  <% end %>
+
+  

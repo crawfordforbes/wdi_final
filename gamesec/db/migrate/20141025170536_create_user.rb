@@ -6,6 +6,7 @@ class CreateUser < ActiveRecord::Migration
     	t.string :password_digest
     	t.integer :games_played
     	t.integer :games_won
+        t.integer :score
     	t.timestamps
     end
   end

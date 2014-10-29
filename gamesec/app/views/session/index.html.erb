@@ -1,31 +1,4 @@
-<div class="dashboard">
-	<h2>Welcome, <%= user.id %>. Please select a group or create a new one</h2>
-	<div id="groupDropDown"></div>
-	<%= form_tag("/groups", method: "POST") do %>
-	<%= label_tag(:name, "Name:") %>
-	<%= text_field_tag(:name) %>
-	<%= submit_tag("Make Group") %>
-	<% end %>
 
-	<h3>Make changes to your account here:</h3>
-	XXX CREATE EDIT USER FORM XXX
-</div>
-
-<div class="groupEdit">
-	<h2>Please confirm players</h2>
-	<ul>
-		XXX USE JS TO CREATE PREFILLED LIST OF PLAYERS INPUTS WITH CHECKBOXES AND EMPTY INPUTS FOR ADDITIONAL PLAYERS XXX
-	</ul>
-	<h3>Don't have an account?  Sign up here:</h3>
-	XXX USE AJAX FOR POST HERE XXX
-	<%= form_tag("/user", method: "POST") do %>
-	<%= label_tag(:name, "Name:") %>
-	<%= text_field_tag(:name) %>
-	<%= label_tag(:password, "Password:") %>
-	<%= text_field_tag(:password) %>
-	<%= submit_tag("Sign up") %>
-	<% end %>
-</div>
 
 <div class="game">
 	<div class = "scoreboard">

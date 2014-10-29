@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141025170609) do
   enable_extension "plpgsql"
 
   create_table "games", force: true do |t|
+    t.boolean  "in_progress"
     t.integer  "name"
     t.integer  "max_score"
     t.text     "rolls"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141025170609) do
     t.string   "password_digest"
     t.integer  "games_played"
     t.integer  "games_won"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
